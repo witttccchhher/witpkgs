@@ -21,5 +21,5 @@ inputs.witpkgs.packages.${pkgs.system}.<package-name>
 - [anicli-ru](https://github.com/vypivshiy/ani-cli-ru) (Broken)
 - [canvas](https://github.com/adi1090x/canvas)
 - [distrohoop](https://github.com/br0sinski/distrohoop)
-- [minbrowser](https://github.com/minbrowser/min) (Broken)
+- [minbrowser](https://github.com/minbrowser/min)
 - [goto](https://github.com/grafviktor/goto)

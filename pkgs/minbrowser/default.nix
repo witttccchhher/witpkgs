@@ -1,29 +1,18 @@
 {
   lib,
-  pkgs,
-  fetchFromGitHub,
+  fetchurl,
   appimageTools,
   ...
 }:
 
-let
-  source = fetchFromGitHub {
-    owner = "minbrowser";
-    repo = "min";
-    rev = "9d7e4ec16d5a9b0991e2c00a9e14e33d07461e83";
-    hash = "sha256-5aOwNONWT4uX75+zLqCEyTY4lRfS6wGIC66ozzrvLl0=";
-  };
-
-  file = pkgs.runCommand "appimage-gen" { } ''
-    cd ${source.out}
-    ${pkgs.nodejs}/bin/npm run buildAppImage
-    mv ./dist/app/Min-1.34.0.AppImage $out
-  '';
-in appimageTools.wrapType2 {
+appimageTools.wrapType2 {
   pname = "minbrowser";
   version = "1.34.0";
 
-  src = file;
+  src = fetchurl {
+    url = "https://github.com/witttccchhher/witpkgs/releases/download/0.1/Min-1.34.0.AppImage";
+    hash = "sha256-AgTqA/g+LP1q82Eo0X2jBjHgV4ZWD+uSDtW8VldqCCc=";
+  };
 
   meta = {
     description = "A fast, minimal browser that protects your privacy";
