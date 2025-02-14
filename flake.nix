@@ -11,6 +11,8 @@
       # anicli-ru = pkgs.callPackage ./pkgs/anicli-ru { };
       canvas = pkgs.callPackage ./pkgs/canvas { };
       distrohoop = pkgs.callPackage ./pkgs/distrohoop { };
+      minbrowser = pkgs.callPackage ./pkgs/minbrowser/default.nix { };
+      goto = pkgs.callPackage ./pkgs/goto/default.nix { };
     };
 
     devShells.${system}.default = pkgs.mkShell {
@@ -19,6 +21,8 @@
         # self.packages.${system}.anicli-ru
         self.packages.${system}.canvas
         self.packages.${system}.distrohoop
+        self.packages.${system}.minbrowser
+        self.packages.${system}.goto
       ];
     };
 
