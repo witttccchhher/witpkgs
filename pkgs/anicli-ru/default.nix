@@ -3,6 +3,7 @@
   pkgs,
   fetchPypi,
   python3Packages,
+  ...
 }:
 python3Packages.buildPythonApplication rec {
   pname = "anicli-ru";
@@ -21,7 +22,7 @@ python3Packages.buildPythonApplication rec {
   ];
 
   dependencies = [
-    python3Packages.hatchling
+    python3Packages.setuptools
     (pkgs.callPackage ./eggella.nix { })
     (pkgs.callPackage ./anicli_api.nix { })
   ];

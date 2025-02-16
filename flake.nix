@@ -14,7 +14,7 @@
           mkPackage =
             packageList: lib.genAttrs packageList (packageName: pkgs.callPackage ./pkgs/${packageName} { });
           packagesList = [
-            # "anicli-ru" (Broken)
+            "anicli-ru"
             "canvas"
             "distrohoop"
             "minbrowser"
