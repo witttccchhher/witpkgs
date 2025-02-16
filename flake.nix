@@ -1,31 +1,29 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    flake-parts.url = "github:hercules-ci/flake-parts";
   };
 
-  outputs = { self, nixpkgs }: let
-    system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
-  in {
-    packages.${system} = {
-      # anicli-ru = pkgs.callPackage ./pkgs/anicli-ru { };
-      canvas = pkgs.callPackage ./pkgs/canvas { };
-      distrohoop = pkgs.callPackage ./pkgs/distrohoop { };
-      minbrowser = pkgs.callPackage ./pkgs/minbrowser/default.nix { };
-      goto = pkgs.callPackage ./pkgs/goto/default.nix { };
+  outputs =
+    inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = inputs.nixpkgs.lib.systems.flakeExposed;
+      perSystem =
+        { pkgs, lib, ... }:
+        let
+          mkPackage =
+            packageList: lib.genAttrs packageList (packageName: pkgs.callPackage ./pkgs/${packageName} { });
+          packagesList = [
+            # "anicli-ru" (Broken)
+            "canvas"
+            "distrohoop"
+            "minbrowser"
+            "goto"
+          ];
+        in
+        {
+          packages = mkPackage packagesList;
+          formatter = pkgs.nixfmt-rfc-style;
+        };
     };
-
-    devShells.${system}.default = pkgs.mkShell {
-      name = "witpkgs";
-      packages = [
-        # self.packages.${system}.anicli-ru
-        self.packages.${system}.canvas
-        self.packages.${system}.distrohoop
-        self.packages.${system}.minbrowser
-        self.packages.${system}.goto
-      ];
-    };
-
-    formatter.${system} = pkgs.nixfmt-rfc-style;
-  };
 }
