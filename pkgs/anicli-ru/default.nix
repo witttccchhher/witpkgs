@@ -7,13 +7,13 @@
 }:
 python3Packages.buildPythonApplication rec {
   pname = "anicli-ru";
-  version = "5.0.12";
+  version = "5.0.14";
   pyproject = true;
 
   src = fetchPypi {
     pname = "anicli_ru";
     inherit version;
-    hash = "sha256-s8uI0ch+SPqthHy+d0jcB6o5/Zqx89JHM68Q00nwCFA=";
+    hash = "sha256-P4dJL9V1uihNsF9mqjay3PbncjnBuKbmPhufDv5l7Uk=";
   };
 
   build-system = with python3Packages; [

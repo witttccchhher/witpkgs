@@ -8,12 +8,12 @@
 }:
 python3Packages.buildPythonApplication rec {
   pname = "anicli_api";
-  version = "0.7.2";
+  version = "0.7.3";
   pyproject = true;
 
   src = fetchPypi {
     inherit pname version;
-    hash = "sha256-nnJWi87WDr8pDEUb9IQocDoPFS41DlS/l7qKjeTD73Q=";
+    hash = "sha256-eFAVr43lE+c7hFIyyKcq4W8MmzkPHdZ1z4fiYQxaHY8=";
   };
 
   build-system = with python3Packages; [
@@ -30,8 +30,6 @@ python3Packages.buildPythonApplication rec {
         hash = "sha256-N0ztVA/KMui9kKIovmOfNTwwrdvSimmNkSvvC+3gpck=";
       };
     };
-    # http2 = httpx.optional-dependencies.http2;
-    # socks = httpx.optional-dependencies.socks;
   in [
     (python3.withPackages (ps: [
       httpx

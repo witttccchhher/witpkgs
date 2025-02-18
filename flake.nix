@@ -19,6 +19,7 @@
             "distrohoop"
             "minbrowser"
             "goto"
+            "hash"
           ];
         in
         {
