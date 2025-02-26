@@ -20,6 +20,7 @@
             "minbrowser"
             "goto"
             "hash"
+            "django-defect-dojo"
           ];
         in
         {
